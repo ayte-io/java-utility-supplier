@@ -1,0 +1,10 @@
+# IDE Files
+.idea
+*.iml
+
+# Artifacts
+target/
+
+# Maven Wrapper
+.mvn/wrapper/maven-wrapper.jar
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>io.ayte.utility.supplier</groupId>
+        <version>0.1.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>supplier</artifactId>
+    <name>Ayte :: Utility :: Supplier :: Kit</name>
+
+    <scm>
+        <connection>scm:git:git://github.com/ayte-io/java-utility-supplier.git</connection>
+        <url>https://github.com/ayte-io/java-utility-supplier</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Etki</name>
+            <email>etki@ayte.team</email>
+            <organization>Ayte Labs</organization>
+            <organizationUrl>https://ayte.io</organizationUrl>
+        </developer>
+    </developers>
+
+    <distributionManagement>
+        <repository>
+            <id>ayte.bintray.com</id>
+            <name>ayte.bintray.com</name>
+            <url>https://api.bintray.com/maven/ayte/maven/io.ayte.utility.supplier.kit/;publish=1</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>io.ayte.utility.supplier.kit</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
