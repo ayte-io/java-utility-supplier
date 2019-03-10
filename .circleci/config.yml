@@ -45,7 +45,7 @@ jobs:
       - run: rm /tmp/key
       - run: sudo ln -s $(which gpg) /usr/local/bin/gpg2
       - mvnw/circle:
-          command: -pl '!src/validator' package gpg:sign deploy
+          command: package gpg:sign deploy
 
 workflows:
   version: '2.1'
