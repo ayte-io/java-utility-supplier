@@ -1,11 +1,8 @@
 package io.ayte.utility.supplier.kit;
 
-import io.ayte.utility.supplier.kit.factory.ArrayListFactory;
-import io.ayte.utility.supplier.kit.factory.HashMapFactory;
-import io.ayte.utility.supplier.kit.factory.HashSetFactory;
-import io.ayte.utility.supplier.kit.factory.LinkedListFactory;
-import io.ayte.utility.supplier.kit.factory.TreeMapFactory;
-import io.ayte.utility.supplier.kit.factory.TreeSetFactory;
+import io.ayte.utility.supplier.kit.simple.ConstantSupplier;
+import io.ayte.utility.supplier.kit.simple.EmptySupplier;
+import io.ayte.utility.supplier.kit.simple.RoundRobinSupplier;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -18,9 +15,20 @@ import java.util.NavigableSet;
 import java.util.Set;
 import java.util.function.Supplier;
 
-// @Amplified
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Suppliers {
+    public static <T> Supplier<T> empty() {
+        return EmptySupplier.create();
+    }
+
+    public static <T> Supplier<T> constant(T value) {
+        return ConstantSupplier.create(value);
+    }
+
+    public static <E> Supplier<E> roundRobin(List<? extends E> source) {
+        return RoundRobinSupplier.create(source);
+    }
+
     public static <E> Supplier<Set<E>> hashSetFactory() {
         return Factories.hashSet();
     }

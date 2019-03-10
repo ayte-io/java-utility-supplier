@@ -14,6 +14,19 @@ jobs:
           root: /tmp/workspace
           paths: ['*', '**/*']
 
+  report:
+    docker:
+      - image: circleci/openjdk:8
+    working_directory: /tmp/workspace
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - mvnw/circle:
+          command: allure:report
+      - store_artifacts:
+          path: target/allure/report
+          destination: Report/Allure
+
   publish:
     docker:
       - image: circleci/openjdk:11.0
@@ -39,6 +52,12 @@ workflows:
   default:
     jobs:
       - build:
+          filters:
+            tags:
+              only: /.*/
+      - report:
+          requires:
+            - build
           filters:
             tags:
               only: /.*/
