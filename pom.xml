@@ -41,7 +41,8 @@
     <packaging>pom</packaging>
 
     <properties>
-        <sonar.projectKey>ayte-io_java-utility-supplier</sonar.projectKey>
+        <sonar.projectKey>ayte:java:utility:supplier</sonar.projectKey>
+        <sonar.clover.reportPath>target/site/clover/clover.xml</sonar.clover.reportPath>
     </properties>
 
     <modules>

@@ -35,6 +35,10 @@
         </repository>
     </distributionManagement>
 
+    <properties>
+        <sonar.projectKey>ayte:java:utility:supplier:kit</sonar.projectKey>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
