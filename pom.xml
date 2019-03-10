@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.ayte</groupId>
         <artifactId>ulysses</artifactId>
-        <version>0.1.9</version>
+        <version>0.1.10</version>
     </parent>
 
     <groupId>io.ayte.utility.supplier</groupId>
@@ -15,6 +15,7 @@
     <version>0.1.1</version>
 
     <name>Ayte :: Utility :: Supplier :: Parent</name>
+    <description>Set of utility classes aimed to help with boilerplate code around java.util.function.Supplier</description>
 
     <scm>
         <connection>scm:git:git://github.com/ayte-io/java-utility-supplier.git</connection>
@@ -39,11 +40,6 @@
     </distributionManagement>
 
     <packaging>pom</packaging>
-
-    <properties>
-        <sonar.projectKey>ayte:java:utility:supplier</sonar.projectKey>
-        <sonar.clover.reportPath>target/site/clover/clover.xml</sonar.clover.reportPath>
-    </properties>
 
     <modules>
         <module>src/kit</module>
