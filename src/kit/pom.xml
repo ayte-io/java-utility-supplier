@@ -5,13 +5,14 @@
     <parent>
         <artifactId>parent</artifactId>
         <groupId>io.ayte.utility.supplier</groupId>
-        <version>0.1.1</version>
+        <version>0.1.2</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>kit</artifactId>
     <name>Ayte :: Utility :: Supplier :: Kit</name>
+    <description>Utitlity :: Supplier implementations and helper classes</description>
 
     <scm>
         <connection>scm:git:git://github.com/ayte-io/java-utility-supplier.git</connection>
@@ -27,19 +28,11 @@
         </developer>
     </developers>
 
-    <distributionManagement>
-        <repository>
-            <id>ayte.bintray.com</id>
-            <name>ayte.bintray.com</name>
-            <url>https://api.bintray.com/maven/ayte/maven/io.ayte.utility.supplier.kit/;publish=1</url>
-        </repository>
-    </distributionManagement>
-
-    <properties>
-        <sonar.projectKey>ayte:java:utility:supplier:kit</sonar.projectKey>
-    </properties>
-
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -64,17 +57,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifestEntries>
-                            <Automatic-Module-Name>io.ayte.utility.supplier.kit</Automatic-Module-Name>
-                        </manifestEntries>
-                    </archive>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>

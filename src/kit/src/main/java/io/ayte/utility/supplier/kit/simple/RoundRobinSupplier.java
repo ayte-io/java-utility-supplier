@@ -16,7 +16,7 @@ import java.util.function.Supplier;
  * It is implied that list contents may not change, though list is never
  * copied during creation to reduce possible memory pressure.
  *
- * @param <T>
+ * @param <T> Supplied type.
  */
 @ToString
 @EqualsAndHashCode
@@ -33,6 +33,11 @@ public class RoundRobinSupplier<T> implements Supplier<T> {
     /**
      * Creates new supplier. On zero and single item lists will shortcut
      * to {@link EmptySupplier} and {@link ConstantSupplier}.
+     *
+     * @param source List to iterate.
+     * @param <T> Supplied type.
+     *
+     * @return New Supplier.
      */
     public static <T> Supplier<T> create(@NonNull List<? extends T> source) {
         switch (source.size()) {

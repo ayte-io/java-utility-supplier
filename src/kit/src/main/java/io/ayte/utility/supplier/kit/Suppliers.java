@@ -25,7 +25,18 @@ public class Suppliers {
         return ConstantSupplier.create(value);
     }
 
-    public static <E> Supplier<E> roundRobin(List<? extends E> source) {
+    /**
+     * Creates new round-robin supplier that iterates through provided
+     * list. Clients should not rely on returned type since it can be
+     * other than {@link RoundRobinSupplier}, e.g. {@link EmptySupplier}
+     * for empty list.
+     *
+     * @param source Value source, implied to be immutable (but never
+     * copied).
+     * @param <E> Value type.
+     * @return New Supplier.
+     */
+    public static <E> Supplier<E> roundRobin(@NonNull List<? extends E> source) {
         return RoundRobinSupplier.create(source);
     }
 
