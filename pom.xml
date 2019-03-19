@@ -12,7 +12,7 @@
 
     <groupId>io.ayte.utility.supplier</groupId>
     <artifactId>parent</artifactId>
-    <version>0.1.2</version>
+    <version>0.1.3</version>
 
     <packaging>pom</packaging>
 
