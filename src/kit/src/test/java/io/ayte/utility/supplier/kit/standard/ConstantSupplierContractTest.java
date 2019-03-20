@@ -1,4 +1,4 @@
-package io.ayte.utility.supplier.kit.simple;
+package io.ayte.utility.supplier.kit.standard;
 
 import lombok.val;
 import org.junit.jupiter.api.Test;

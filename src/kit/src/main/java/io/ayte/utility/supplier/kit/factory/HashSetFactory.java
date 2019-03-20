@@ -1,13 +1,13 @@
 package io.ayte.utility.supplier.kit.factory;
 
+import io.ayte.utility.supplier.ThreadSafeSupplier;
 import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Supplier;
 
 @ToString
-public class HashSetFactory<T> implements Supplier<Set<T>> {
+public class HashSetFactory<T> implements ThreadSafeSupplier<Set<T>> {
     public static final int DEFAULT_CAPACITY = 16;
     public static final float DEFAULT_LOAD_FACTOR = 0.75F;
 

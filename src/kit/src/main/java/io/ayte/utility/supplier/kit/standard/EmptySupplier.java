@@ -1,14 +1,14 @@
-package io.ayte.utility.supplier.kit.simple;
+package io.ayte.utility.supplier.kit.standard;
 
+import io.ayte.utility.supplier.StableSupplier;
+import io.ayte.utility.supplier.ThreadSafeSupplier;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.function.Supplier;
-
 @ToString
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class EmptySupplier<T> implements Supplier<T> {
+public class EmptySupplier<T> implements StableSupplier<T>, ThreadSafeSupplier<T> {
     private static final EmptySupplier INSTANCE = new EmptySupplier<>();
 
     @Override

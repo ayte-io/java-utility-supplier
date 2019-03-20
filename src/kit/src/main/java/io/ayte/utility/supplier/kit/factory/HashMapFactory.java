@@ -1,13 +1,13 @@
 package io.ayte.utility.supplier.kit.factory;
 
+import io.ayte.utility.supplier.ThreadSafeSupplier;
 import lombok.ToString;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
 @ToString
-public class HashMapFactory<K, V> implements Supplier<Map<K, V>> {
+public class HashMapFactory<K, V> implements ThreadSafeSupplier<Map<K, V>> {
     public static final int DEFAULT_CAPACITY = 16;
     public static final float DEFAULT_LOAD_FACTOR = 0.75F;
 

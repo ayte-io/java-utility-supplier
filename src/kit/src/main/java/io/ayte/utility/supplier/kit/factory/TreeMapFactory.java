@@ -1,15 +1,15 @@
 package io.ayte.utility.supplier.kit.factory;
 
+import io.ayte.utility.supplier.ThreadSafeSupplier;
 import lombok.NonNull;
 import lombok.ToString;
 
 import java.util.Comparator;
 import java.util.NavigableMap;
 import java.util.TreeMap;
-import java.util.function.Supplier;
 
 @ToString
-public class TreeMapFactory<K, V> implements Supplier<NavigableMap<K, V>> {
+public class TreeMapFactory<K, V> implements ThreadSafeSupplier<NavigableMap<K, V>> {
     private final Comparator<? super K> comparator;
 
     private TreeMapFactory(Comparator<? super K> comparator) {

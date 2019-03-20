@@ -35,6 +35,7 @@
 
     <modules>
         <module>src/kit</module>
+        <module>src/api</module>
     </modules>
 
     <build>

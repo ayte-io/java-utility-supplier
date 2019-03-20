@@ -1,8 +1,10 @@
 package io.ayte.utility.supplier.kit;
 
-import io.ayte.utility.supplier.kit.simple.ConstantSupplier;
-import io.ayte.utility.supplier.kit.simple.EmptySupplier;
-import io.ayte.utility.supplier.kit.simple.RoundRobinSupplier;
+import io.ayte.utility.supplier.ThreadSafeSupplier;
+import io.ayte.utility.supplier.kit.concurrent.BlockingSupplier;
+import io.ayte.utility.supplier.kit.standard.ConstantSupplier;
+import io.ayte.utility.supplier.kit.standard.EmptySupplier;
+import io.ayte.utility.supplier.kit.standard.RoundRobinSupplier;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -51,6 +53,18 @@ public class Suppliers {
      */
     public static <E> Supplier<E> roundRobin(@NonNull Iterable<? extends E> source) {
         return RoundRobinSupplier.create(source);
+    }
+
+    /**
+     * Wraps delegate in synchronized wrapper in case it's not already
+     * an instance of {@link ThreadSafeSupplier}.
+     *
+     * @param delegate Supplier to wrap.
+     * @param <T> Supplier return type.
+     * @return Wrapped or original supplier.
+     */
+    public static <T> Supplier<T> blocking(@NonNull Supplier<T> delegate) {
+        return BlockingSupplier.create(delegate);
     }
 
     public static <E> Supplier<Set<E>> hashSetFactory() {

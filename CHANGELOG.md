@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+
+- `ThreadSafeSupplier` and `StableSupplier` interfaces
+- BlockingSupplier (and `Supplier.blocking()`) that synchronizes access 
+to delegate
+
+### Changed
+
+- RoundRobinSupplier and corresponding factory methods now accept 
+regular collection and iterable (hey there sorted sets!)
+- Renamed internal `simple` package to `standard`
 
 ## [0.1.2] - 19-03-2019
 

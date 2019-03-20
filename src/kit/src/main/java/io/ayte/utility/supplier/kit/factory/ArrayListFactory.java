@@ -1,13 +1,13 @@
 package io.ayte.utility.supplier.kit.factory;
 
+import io.ayte.utility.supplier.ThreadSafeSupplier;
 import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 @ToString
-public class ArrayListFactory<T> implements Supplier<List<T>> {
+public class ArrayListFactory<T> implements ThreadSafeSupplier<List<T>> {
     public static final int DEFAULT_CAPACITY = 16;
 
     private static final ArrayListFactory DEFAULT = create(DEFAULT_CAPACITY);

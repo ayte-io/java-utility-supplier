@@ -1,4 +1,4 @@
-package io.ayte.utility.supplier.kit.simple;
+package io.ayte.utility.supplier.kit.standard;
 
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
