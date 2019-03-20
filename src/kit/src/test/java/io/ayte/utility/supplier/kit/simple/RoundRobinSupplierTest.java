@@ -6,13 +6,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RoundRobinSupplierTest {
     @SuppressWarnings("ConstantConditions")
@@ -30,14 +30,14 @@ class RoundRobinSupplierTest {
 
     public static Object[][] sourcesProvider() {
         return new Object[][] {
-                {Collections.singletonList(1)},
+                {Collections.singleton(1)},
                 {Arrays.asList(1, 2, 3)}
         };
     }
 
     @ParameterizedTest
     @MethodSource("sourcesProvider")
-    public void acceptsRegularSources(List<Integer> source) {
+    public void acceptsRegularSources(Collection<Integer> source) {
         val sut = RoundRobinSupplier.create(source);
         for (int i = 0; i < 2; i++) {
             for (val element : source) {

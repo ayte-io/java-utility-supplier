@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -27,16 +28,28 @@ public class Suppliers {
 
     /**
      * Creates new round-robin supplier that iterates through provided
-     * list. Clients should not rely on returned type since it can be
-     * other than {@link RoundRobinSupplier}, e.g. {@link EmptySupplier}
-     * for empty list.
+     * collection. Clients should not rely on returned type since it can
+     * be other than {@link RoundRobinSupplier}, e.g.
+     * {@link EmptySupplier} for empty collection.
      *
      * @param source Value source, implied to be immutable (but never
      * copied).
      * @param <E> Value type.
      * @return New Supplier.
      */
-    public static <E> Supplier<E> roundRobin(@NonNull List<? extends E> source) {
+    public static <E> Supplier<E> roundRobin(@NonNull Collection<? extends E> source) {
+        return RoundRobinSupplier.create(source);
+    }
+
+    /**
+     * Same as {@link #roundRobin(Collection)}, but without smart
+     * short-circuiting to empty / constant supplier.
+     *
+     * @param source Value source.
+     * @param <E> Value type.
+     * @return New Supplier.
+     */
+    public static <E> Supplier<E> roundRobin(@NonNull Iterable<? extends E> source) {
         return RoundRobinSupplier.create(source);
     }
 

@@ -6,7 +6,8 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.function.Supplier;
 
 /**
@@ -22,31 +23,38 @@ import java.util.function.Supplier;
 @EqualsAndHashCode
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class RoundRobinSupplier<T> implements Supplier<T> {
-    private final List<? extends T> source;
-    private int cursor = 0;
+    private final Iterable<? extends T> source;
+    private Iterator<? extends T> iterator;
 
     @Override
     public T get() {
-        return source.get(cursor++ % source.size());
+        if (iterator == null || !iterator.hasNext()) {
+            iterator = source.iterator();
+        }
+        return iterator.hasNext() ? iterator.next() : null;
     }
 
     /**
-     * Creates new supplier. On zero and single item lists will shortcut
-     * to {@link EmptySupplier} and {@link ConstantSupplier}.
+     * Creates new supplier. On zero and single item collections will
+     * shortcut to {@link EmptySupplier} and {@link ConstantSupplier}.
      *
      * @param source List to iterate.
      * @param <T> Supplied type.
      *
      * @return New Supplier.
      */
-    public static <T> Supplier<T> create(@NonNull List<? extends T> source) {
+    public static <T> Supplier<T> create(@NonNull Collection<? extends T> source) {
         switch (source.size()) {
             case 0:
                 return EmptySupplier.create();
             case 1:
-                return ConstantSupplier.create(source.get(0));
+                return ConstantSupplier.create(source.iterator().next());
             default:
                 return new RoundRobinSupplier<>(source);
         }
+    }
+
+    public static <T> Supplier<T> create(@NonNull Iterable<? extends T> source) {
+        return new RoundRobinSupplier<>(source);
     }
 }
