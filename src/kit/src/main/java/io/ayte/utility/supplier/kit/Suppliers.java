@@ -1,5 +1,6 @@
 package io.ayte.utility.supplier.kit;
 
+import io.ayte.utility.supplier.kit.concurrent.OptimisticComputation;
 import io.ayte.utility.supplier.kit.simple.ConstantSupplier;
 import io.ayte.utility.supplier.kit.simple.EmptySupplier;
 import io.ayte.utility.supplier.kit.simple.RoundRobinSupplier;
@@ -14,6 +15,7 @@ import java.util.Map;
 import java.util.NavigableMap;
 import java.util.NavigableSet;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -103,5 +105,32 @@ public class Suppliers {
 
     public static <E> Supplier<List<E>> linkedListFactory() {
         return Factories.linkedList();
+    }
+
+    /**
+     * Creates new supplier that computes it's return value by applying
+     * transformer to source value from provider. This supplier
+     * recomputes value only on changes of source value (caching it's
+     * return value), thus avoiding calling costly transformer.
+     *
+     * This particular supplier does it in optimistic way, so it may
+     * apply transformer several times for single change in concurrent
+     * environment.
+     *
+     * It is guaranteed that supplier will return computed value for
+     * most recent change it has seen at the entry point, but there are
+     * no guarantees that provider hasn't started serving new value
+     * during the computation.
+     *
+     * @param provider Provider of source value.
+     * @param transformer Costly value transformation function.
+     * @param <T> Provider return type.
+     * @param <V> Transformer / result return type.
+     * @return Supplier that recomputes value only on changes.
+     *
+     * @since 0.1.3
+     */
+    public static <T, V> Supplier<V> computation(@NonNull Supplier<T> provider, @NonNull Function<T, V> transformer) {
+        return OptimisticComputation.create(provider, transformer);
     }
 }
